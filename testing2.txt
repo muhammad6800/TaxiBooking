@@ -1,41 +1,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <?php
-   
-	if(isset($_POST ['Name'], $_POST['Street_Address'] ))
+   /*
+	if(isset($_POST ['Name'], $_POST['Street_Address'], $_POST['Address_Line_2'], $_POST['City'], $_POST['County'], $_POST['Street_Address2'], 
+	$_POST['Address_Line2'], $_POST['City1'], $_POST['County1'], $_POST['Email'], $_POST['Phone'] ) ) 
 	{ 
-		//declaring variables 
+		//declaring variables
+		$errors = array(); // to hold the errors 
+	   $Name = $_POST['Name']; // this has the same name as the inout form name does 
+	   //Pick up address
+	   $Street_Address = $_POST['Street_Address'];
+	   $Address_Line_2 = $_POST['Address_Line_2'];
+	   $City = $_POST['City'];
+	   $County = $_POST['County'];
+	   //drop of address
+	   $Street_Address_2 = $_POST['Street_Address2'];
+	   $Address_Line2 = $_POST['Address_Line2'];
+	   $City1 = $_POST['City1'];
+	   $County1 = $_POST['County1'];
+	   //Date
+	   //$Date = $_POST['Date'];
+	   //$Time = $_POST['Time'];
+	   //$Amount_of_Passengers = $_POST['Amtofpassenger']; //not needed
+	   $Email = $_POST['Email'];
+	   $Phone = $_POST['Phone']; 
+	   */
+	
 
-	$errors = array(); // to hold the errors 
-   $Name = $_POST['Name']; // this has the same name as the inout form name does 
-   //Pick up address
-   $Street_Address = $_POST['Street_Address'];
-   $Address_Line_2 = $_POST['Address_Line_2'];
-   $City = $_POST['City'];
-   $County = $_POST['County'];
-   //drop of address
-   $Street_Address_2 = $_POST['Street_Address2'];
-   $Address_Line2 = $_POST['Address_Line2'];
-   $City1 = $_POST['City1'];
-   $County1 = $_POST['County1'];
-   //Date
-   //$Date = $_POST['Date'];
-   //$Time = $_POST['Time'];
-   //$Amount_of_Passengers = $_POST['Amtofpassenger']; //not needed
-   $Email = $_POST['Email'];
-   $Phone = $_POST['Phone']; 
-  
    
-		if( empty($Name) || empty($Address_Line_2) || empty($City) || empty($County) || empty($Street_Address_2) || empty($Address_Line2) || empty($City1) || empty($County1) || empty($Email) || empty($Phone)) {
-	   
+		if( empty($Name) || empty($Address_Line_2) || empty($City) || empty($County) || empty($Street_Address_2) || empty($Address_Line2) || empty($City1) || 				            empty($County1) || empty($Email) || empty($Phone))
+		{
 	
 			$errors[] = 'Fields are empty';
-	
 		}
 		else
 		{
-	  
-
 			if(isset ($_POST['Name'], $_POST['Street_Address']))
 			{
 				if(strlen($Name) > 25)
@@ -48,18 +47,12 @@
 					echo  '<div class="error">' ,$errors, '</div>'   ;
 				}
 			}
-	
-		
+
 		}
 	
-	}
+	
 
 ?>
-
-
-
-
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -79,14 +72,16 @@
                 	Taxi Booking System
                 </a>
             </h1>
-			<form id="Taxi Booking system" class="appnitro" method="post">
+			<form id="Taxi Booking system" class="appnitro" action="form.php" method="post">
 				<div class="form_description">
 					<h2>Dash Taxi</h2>
 				</div>						
 				<li id="li_1" >
 				<label class="description" for="Name1">Name </label>
 				<div>
-					<input id="Name" name="Name" class="element text medium" type="text" maxlength="255" value="" /> 
+					<input id="Name" name="Name" class="element text medium" type="text" maxlength="255" 
+						value="<?=( isset( $_POST['Name'] ) ? $_POST['Name'] : 
+						'' )?>" /> 
 				</div> 
 				</li>		
             <li id="li_2" >
@@ -95,22 +90,30 @@
                 </label>
             
                 <div>
-                    <input id="Street_Address" name="Street_Address" class="element text large" value="" type="text">
+                    <input id="Street_Address" name="Street_Address" class="element text large" type="text" 
+						value="<?=( isset( $_POST['Street_Address'] ) ? $_POST['Street_Address'] : 
+						'' )?>"" >
                     <label for="Street_Address">Street Address</label>
                 </div>
         
                 <div>
-                    <input id="Address_Line_2" name="Address_Line_2"  value="" class="element text large" type="text">
+                    <input id="Address_Line_2" name="Address_Line_2"   class="element text large" type="text" 
+						value="<?=( isset( $_POST['Address_Line_2'] ) ? $_POST['Address_Line_2'] : 
+						'' )?>"">
                     <label for="Address">Address Line 2</label>
                 </div>
         
                 <div class="left">
-                    <input id=	"City" name="City" class="element text medium" value="" type="text">
+                    <input id=	"City" name="City" class="element text medium"  type="text" 
+						value="<?=( isset( $_POST['City'] ) ? $_POST['City'] : 
+						'' )?>"">
                     <label for="City">City</label>
                 </div>
         
                 <div class="right">
-                    <input id="County" name="County" class="element text medium" value="" type="text">
+                    <input id="County" name="County" class="element text medium"  type="text" 
+						value="<?=( isset( $_POST['County'] ) ? $_POST['County'] : 
+						'' )?>"">
                     <label for="County">County</label>
                 </div>
         
@@ -118,22 +121,29 @@
             <li id="li_2" >
                 <label class="description" for="Drop_of_Address">Drop Of Address </label>
                 <div>
-                    <input id="Street_Address" name="Street_Address2"  class="element text large"  value="" type="text">
+                    <input id="Street_Address" name="Street_Address2"  class="element text large"   type="text"
+						value="<?=( isset( $_POST['Street_Address2'] ) ? $_POST['Street_Address2'] : 
+						'' )?>"">
                     <label for="Street_Address">Street Address</label>
                 </div>
         
                 <div>
-                    <input id="Address_Line_2" name="Address_Line2"  class="element text large" value="" type="text">
+                    <input id="Address_Line_2" name="Address_Line2"  class="element text large"  type="text" 
+					value="<?=( isset( $_POST['Address_Line2'] ) ? $_POST['Address_Line2'] : 
+					'' )?>"">
                     <label for="Address">Address Line 2</label>
                 </div>
         
                 <div class="left">
-                    <input id=	"City" name="City1" value="" type="text">
+                    <input id=	"City" name="City1"  type="text" 
+					value="<?=( isset( $_POST['City1'] ) ? $_POST['City1'] : 
+					'' )?>"">
                     <label for="City">City</label>
                 </div>
         
                 <div class="right">
-                    <input id="County" name="County1" class="element text medium" value="" type="text">
+                    <input id="County" name="County1" class="element text medium"  type="text" value="<?=( isset( $_POST['County1'] ) ? $_POST['County1'] : 
+					'' )?>">
                     <label for="County">County</label>
                 </div>
         
@@ -141,7 +151,9 @@
             
            <li id="li_4" >
                 <label class="description" for="Date">Date  </label>
-                <input id="Date" name="element_4_1" class="element text medium" size="2" maxlength="6" value="" type="date"> 
+                <input id="Date" name="element_4_1" class="element text medium" size="2" maxlength="6" type="date" 
+					value="value="<?=( isset( $_POST['Date'] ) ? $_POST['Date'] : 
+					'' )?>"" > 
             </li> 
             
             <li id="li_5" >
@@ -152,7 +164,8 @@
             <li id="li_6" >
                     <label class="description" class="element text medium" for="AmtOfPassenger">Amount Of Passengers: </label>
                 <span>
-                    <select id='amtofpassenger'>
+                    <select id='amtofpassenger' name="amtofpassenger" value="value="<?=( isset( $_POST['amtofpassenger'] ) ? $_POST['amtofpassenger'] : 
+					'' )?>">
                         <option value="1">01</option>
                         <option value="2">02</option>
                         <option value="3">03</option>
@@ -172,14 +185,18 @@
             <li id="li_7" >
                 <label class="description" for="Email">Email </label>
                 <div>
-                    <input id="Email" name="Email" class="element text medium" type="email" maxlength="255" value=""/>
+                    <input id="Email" name="Email" class="element text medium" type="email" maxlength="255" 
+						value="<?=( isset( $_POST['Email'] ) ? $_POST['Email'] : 
+					'' )?>""/>
                 </div> 
             </li>
             
             <li id="li_8" >
                 <label class="description" for="Phone"> Phone </label>
                 <span>
-                    <input id="Phone" name="Phone" class="element text medium" size="255" maxlength="255" value="" type="text"> 
+                    <input id="Phone" name="Phone" class="element text medium" size="255" maxlength="255"  type="text" 
+					value="<?=( isset( $_POST['Phone'] ) ? $_POST['Phone'] : 
+					'' )?>""> 
                 </span>
             </li>
                     
@@ -197,4 +214,4 @@
                 </ul>
             </form>		
 </body>
-</html>
+</html>	
